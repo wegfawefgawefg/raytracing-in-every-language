@@ -1,0 +1,13 @@
+-multiple files
+-reduce function name complexity
+    christ its annoying to type
+
+x-templating
+
+fix the bug
+multithreading
+
+operator overload
+animate?
+reflections?
+caustics?
