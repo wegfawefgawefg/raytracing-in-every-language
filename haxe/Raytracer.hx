@@ -1,16 +1,16 @@
 import Vec3;
 
 class Raytracer {
-    static public var WIDTH:Int = 512;
-    static public var HEIGHT:Int = 512;
+    static public var WIDTH:Int = 3840;
+    static public var HEIGHT:Int = 2160;
 
     static public var MAX_STEPS:Int = 100;
-    static public var MIN_SURFACE_DIST:Float = 0.01;
+    static public var MIN_SURFACE_DIST:Float = 0.005;
     static public var MAX_DIST:Float = 100;
 
     static public function makePPM(width:Int, height:Int, pixels:Array<Array<Vec3>>) {
         var im = sys.io.File.write("./image.ppm");
-        im.writeString('P3\n$width $height\n255\n');
+        im.writeString('P3\n${width} ${height}\n255\n');
         for (y in 0...height) {
             for (x in 0...width) {
                 var pixel:Vec3 = pixels[y][x];
@@ -23,7 +23,8 @@ class Raytracer {
     static public function getDist(p:Vec3):Float {
         //	sphere
         var s:Vec3 = new Vec3(0.0, 1.0, 6.0);
-        var r:Float = 1.0;
+        // var r:Float = 1.0;
+        var r:Float = 1.0 + Math.floor(Math.sin(p.y*20.0)*0.1 + Math.sin(p.x*20.0)*0.1);
         var sd:Float = p.vecSub(s).mag() - r;
     
         //dist = sd
@@ -101,7 +102,9 @@ class Raytracer {
 
     static public function raytrace() {
         var pixels:Array<Array<Vec3>> = new Array();
+        
         for (y in 0...Raytracer.HEIGHT) {
+            if ((y%(Raytracer.HEIGHT / 10)) == 0) trace('${y / Raytracer.HEIGHT * 100.0}%');
             var row:Array<Vec3> = new Array();
             for (x in 0...Raytracer.WIDTH) {
                 var col:Vec3 = rayMarchCoord(x, Raytracer.HEIGHT - y);
