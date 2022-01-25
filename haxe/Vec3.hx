@@ -99,4 +99,8 @@ class Vec3 {
     public function dot(v:Vec3) {
         return this.x*v.x + this.y*v.y + this.z*v.z; 
     }
+
+    public function clone() {
+        return new Vec3(this.x, this.y, this.z);
+    }
 }
