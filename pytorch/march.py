@@ -55,7 +55,7 @@ def get_normal(p):
 def march(ro, rd):
     already_hit = torch.zeros((rd.shape[0], 1), dtype=torch.bool).to(DEVICE)
     total_dist = torch.zeros(rd.shape[0], 1).to(DEVICE)
-    for i in tqdm(range(MAX_STEPS)):
+    for _ in tqdm(range(MAX_STEPS)):
         p = ro + rd * total_dist.view(-1, 1)
         dist = get_dist(p)
 
