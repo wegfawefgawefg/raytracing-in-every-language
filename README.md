@@ -1,2 +1,8 @@
 # raytracing-in-every-language
-bunch of raytracers in different languages. idk why i do this
+raytracers in different languages. 
+
+# todo
+push the common lisp code
+
+# tomaybe?
+segregate raymarchers?
